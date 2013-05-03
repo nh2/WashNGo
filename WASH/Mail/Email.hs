@@ -4,8 +4,9 @@ module WASH.Mail.Email (
 	module WASH.Mail.MIME, module WASH.Mail.HeaderField) where
 
 -- from standard library
-import IO
-import System
+import System.IO
+import System.Exit
+import System.Process (system)
 
 -- from utility
 import WASH.Utility.Auxiliary

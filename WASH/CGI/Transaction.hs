@@ -1,3 +1,4 @@
+{-# LANGUAGE ScopedTypeVariables #-}
 -- © 2006 Peter Thiemann
 {- | Transactional, type-indexed implementation of server-side state.
 
@@ -30,11 +31,12 @@ import qualified WASH.Utility.Auxiliary as Aux
 import qualified WASH.Utility.Locking as L
 import qualified WASH.Utility.Unique as Unique
 
-import Directory
-import IO
-import qualified List
-import Maybe
-import Monad
+import qualified Data.List as List
+import System.Directory
+import System.IO
+import Control.Exception
+import Control.Monad
+import Data.Maybe (isNothing)
 import Prelude hiding (init)
 
 transactionLock = Conf.transactionDir
@@ -62,7 +64,7 @@ init name val =
 	   ev <- try (readValue out typedName)
 	   let newparm =
 	         case ev of
-		   Left _ ->
+		   Left (_ :: SomeException) ->
 		     -- value did not exist (but don't write it now)
 		     PAR_CRE_TV typedName v
 		   Right (v', cached) ->

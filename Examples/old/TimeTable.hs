@@ -5,9 +5,9 @@ import Prelude hiding (head, map, span, div, init)
 import qualified Prelude (head, map, span, div)
 import WASH.CGI.CGI hiding (span, head, map, div)
 import qualified WASH.CGI.Persistent2 as P
-import Maybe
-import Monad
-import List hiding (head, map, span, init)
+import Data.Maybe
+import Control.Monad
+import Data.List hiding (head, map, span, init)
 import WASH.CGI.Types
 
 type StoreTTEntry = Maybe (String, [String], [TTEntry])

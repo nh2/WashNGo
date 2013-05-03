@@ -12,7 +12,7 @@
 -}
 module WASH.Utility.RFC2279 (encode, decode) where
 
-import Char
+import Data.Char
 
 
 -- |maps Unicode string to list of octets

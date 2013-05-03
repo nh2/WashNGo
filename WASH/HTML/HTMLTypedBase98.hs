@@ -3,7 +3,7 @@ module WASH.HTML.HTMLTypedBase98
   (module WASH.HTML.HTMLBase, module WASH.HTML.HTMLTypedBase98)
   where
 
-import Char
+import Data.Char
 import WASH.HTML.HTMLBase
 
 -- typed layer

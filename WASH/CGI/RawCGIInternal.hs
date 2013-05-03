@@ -1,3 +1,4 @@
+{-# LANGUAGE ScopedTypeVariables #-}
 -- © 2001, 2002 Peter Thiemann
 -- |Low-level interface to CGI scripting.
 module WASH.CGI.RawCGIInternal 
@@ -5,13 +6,15 @@ module WASH.CGI.RawCGIInternal
   where
 -- (CGIParameter, CGIParameters, start, assocParm, assoc)
 
-import Array
-import Char
-import IO
-import List
-import Maybe
-import Random
-import System
+import qualified Control.Exception as E
+import Data.Array
+import Data.Char
+import Data.List (find)
+import Data.Maybe (fromJust, listToMaybe)
+import System.Environment
+import System.IO
+import System.IO.Error
+import System.Random
 import WASH.Utility.Auxiliary
 import WASH.Utility.Unique
 import qualified WASH.Utility.URLCoding as URLCoding
@@ -319,9 +322,9 @@ fieldNames = map fieldName
 
 generateKey :: IO (Maybe (Integer, String, String))
 generateKey =
-  try (openFile keyFile ReadMode) >>= g
+  E.try (openFile keyFile ReadMode) >>= g
   where
-    g (Left ioerror) =
+    g (Left (ioerror :: IOError)) =
       return Nothing
     g (Right h) =
       do size <- hFileSize h
@@ -378,7 +381,7 @@ cadd c1 c2 = chr (ord c1 + ord c2 `mod` 256)
 decrypt = zipWith csub
 csub c1 c2 = chr ((ord c1 + 256 - ord c2) `mod` 256)
 {-- 
-import Bits						    -- ghc specific
+import Data.Bits						    -- ghc specific
 encrypt = zipWith cxor
 decrypt = zipWith cxor
 cxor c1 c2 = chr (ord c1 `xor` ord c2)

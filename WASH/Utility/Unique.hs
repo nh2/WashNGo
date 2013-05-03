@@ -1,12 +1,15 @@
+{-# LANGUAGE ScopedTypeVariables #-}
 -- © 2001 Peter Thiemann
 module WASH.Utility.Unique (inventStdKey, inventKey, inventFilePath) where
 
-import Random
-import IO
-import Directory
+import Control.Exception
+import System.Random
+import System.IO
+import System.IO.Error
+import System.Directory
 import WASH.Utility.Auxiliary
-import List
-import Monad
+import Data.List
+import Control.Monad
 import WASH.Utility.Locking
 
 registryDir = "/tmp/Unique/"
@@ -25,13 +28,13 @@ inventKey len chars =
 	 dirname = registryDir ++ candidate
      catch (do createDirectory dirname
 	       return candidate)
-	   (\ ioe -> 
+	   (\ (ioe :: IOException) -> 
 	   if isAlreadyExistsError ioe then
 	      -- might want to check here for timeout
 	      inventKey len chars
 	   else if isDoesNotExistError ioe then
 	     do assertDirectoryExists registryDir (return ())
-		setPermissions registryDir (Permissions True True True True)
+		setPermissions registryDir (emptyPermissions { readable = True, writable = True, executable = True, searchable = True })
 		inventKey len chars
 	   else do hPutStrLn stderr ("inventKey could not create " ++ show dirname)
 		   ioError ioe)

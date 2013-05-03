@@ -1,5 +1,4 @@
 -- © 2001, 2002 Peter Thiemann
-{-# ghc_options -fglasgow-exts -}
 module Main where
 
 import Prelude hiding (head, span, div, map)

@@ -6,8 +6,8 @@ module WASH.Utility.Base64
        )
        where
 
-import Array
-import Char
+import Data.Array
+import Data.Char
 
 --
 -- |Yields encoded input cropped to lines of less than 76 characters. Directly

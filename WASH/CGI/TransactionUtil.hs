@@ -11,7 +11,9 @@ import qualified WASH.CGI.HTMLWrapper as H hiding (map,head)
 import WASH.CGI.CGIMonad
 import WASH.CGI.LogEntry
 
-import IO
+import Control.Exception
+import System.IO
+import System.IO.Error
 
 import WASH.CGI.TCGI
 

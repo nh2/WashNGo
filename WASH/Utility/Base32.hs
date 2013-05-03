@@ -4,9 +4,9 @@
 
 module WASH.Utility.Base32 (encode, decode) where
 
-import Bits
-import Char
-import List
+import Data.Bits
+import Data.Char
+import Data.List
 
 encode :: String -> String
 encode = encBase32

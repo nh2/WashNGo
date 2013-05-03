@@ -2,13 +2,13 @@
 module Submit where
 
 import WASH.Utility.Auxiliary
-import Char
-import Directory
+import Data.Char
+import System.Directory
 import WASH.CGI.Fields
-import List hiding (head)
-import Maybe
-import Monad
-import Random
+import Data.List hiding (head)
+import Data.Maybe
+import Control.Monad
+import System.Random
 import Prelude hiding (head)
 import WASH.HTML.HTMLMonad
 import WASH.CGI.CGI

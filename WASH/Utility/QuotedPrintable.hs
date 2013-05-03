@@ -4,7 +4,7 @@ module WASH.Utility.QuotedPrintable
        -- deprecated: encode_quoted, encode_quoted', decode_quoted
        ) where
 
-import Char
+import Data.Char
 import WASH.Utility.Hex
 
 encode, encode', decode :: String -> String

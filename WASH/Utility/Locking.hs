@@ -5,11 +5,12 @@ way to do it through Haskell's standard IO library.
 -}
 module WASH.Utility.Locking (obtainLock, releaseLock) where
 
+import Data.Convertible (convert)
 import WASH.Utility.Auxiliary
-import Directory
-import IO
-import System
-import Time
+import System.Directory
+import System.IO
+import System.Process (system)
+import System.Time
 
 obtainLock  :: FilePath -> IO ()
 releaseLock :: FilePath -> IO ()
@@ -30,8 +31,8 @@ obtainLockLoop name =
 		  mtime <- getModificationTime lp
 		  ftime <- getModificationTime name
 		  ctime <- getClockTime
-		  let td = diffClockTimes ctime mtime
-		      tf = diffClockTimes ctime ftime
+		  let td = diffClockTimes ctime (convert mtime)
+		      tf = diffClockTimes ctime (convert ftime)
 		  if tdSec td > 60 && tdSec tf > 60
 		    then do removeDirectory lp
 			    obtainLock name

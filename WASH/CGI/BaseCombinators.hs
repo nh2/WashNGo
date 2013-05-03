@@ -10,11 +10,10 @@ module WASH.CGI.BaseCombinators
 --}
 where
 
-import qualified List
-import Maybe
-import Monad
-import System
-import IO
+import Control.Monad
+import Data.Maybe
+import System.Exit
+import System.IO
 
 import WASH.Utility.Auxiliary
 import qualified WASH.Utility.Base64 as Base64

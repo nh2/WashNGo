@@ -85,28 +85,28 @@ install-example-sources:
 	done
 
 Manager: Manager.o Item.o RepBase.o Report2.o Submit.o ForeignReport.o
-	$(LINK.o) $^ -o $@ -fglasgow-exts -package text
+	$(LINK.o) $^ -o $@ -package text
 
 MANAGER: MANAGER.o Item.o RepBase.o Report2.o Submit.o ForeignReport.o
-	$(LINK.o) $^ -o $@ -fglasgow-exts -package text
+	$(LINK.o) $^ -o $@ -package text
 Manager.o : Manager.hs
-	$(HC) $(HCFLAGS) -fglasgow-exts -c $< -o $@
+	$(HC) $(HCFLAGS) -c $< -o $@
 MANAGER.o : MANAGER.hs
-	$(HC) $(HCFLAGS) -fglasgow-exts -c $< -o $@
+	$(HC) $(HCFLAGS) -c $< -o $@
 Report2.o : Report2.hs
-	$(HC) $(HCFLAGS) -fglasgow-exts -c $< -o $@
+	$(HC) $(HCFLAGS) -c $< -o $@
 Submit.o : Submit.hs
-	$(HC) $(HCFLAGS) -fglasgow-exts -c $< -o $@
+	$(HC) $(HCFLAGS) -c $< -o $@
 Item.o : Item.hs
-	$(HC) $(HCFLAGS) -fglasgow-exts -c $< -o $@
+	$(HC) $(HCFLAGS) -c $< -o $@
 
 GuessNumber: GuessNumber.o Score.o
 GuessNumberNoCheating: GuessNumberNoCheating.o Score.o
 GuessNumberCookie: GuessNumberCookie.o Score.o
 TinyShop: TinyShop.o DiskImages.o
-	$(LINK.o) $^ -o $@ -fglasgow-exts -package text
+	$(LINK.o) $^ -o $@ -package text
 TinyShopXX: TinyShopXX.o DiskImages.o
-	$(LINK.o) $^ -o $@ -fglasgow-exts -package text
+	$(LINK.o) $^ -o $@ -package text
 
 clean::
 	$(RM) -f *.hi *.o

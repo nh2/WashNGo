@@ -1,7 +1,7 @@
 -- © 2002 Peter Thiemann
 module WASH.CGI.StateItem where
 
-import Char
+import Data.Char
 
 -- 
 -- |type of handles to a PE of type @a@

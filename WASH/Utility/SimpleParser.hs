@@ -1,7 +1,7 @@
 -- © 2002 Peter Thiemann
 module WASH.Utility.SimpleParser where
 
-import Char
+import Data.Char
 
 -- very simple parser combinators: Parsec is too sophisticated!
 newtype Parser a b = Parser (a -> [(b, a)])

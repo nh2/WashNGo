@@ -1,8 +1,8 @@
 -- © 2001, 2003 Peter Thiemann
 module WASH.Utility.Hex where
 
-import Array
-import Char
+import Data.Array
+import Data.Char
 
 hexdigit :: Int -> Char
 hexdigit i = hexdigits ! i

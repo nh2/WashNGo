@@ -2,7 +2,7 @@
 -- |Implements coding of non-alphanumeric characters in URLs and CGI-requests.
 module WASH.Utility.URLCoding (encode, decode) where
 
-import Char
+import Data.Char
 import WASH.Utility.Hex
 
 -- |Perform URI encoding of a list of bytes. See 

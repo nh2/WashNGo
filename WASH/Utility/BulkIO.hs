@@ -1,12 +1,12 @@
 module WASH.Utility.BulkIO where
 
-import IO
+import System.IO
 
-import Ptr
-import CString
-import CTypes
+import Foreign.Ptr
+import Foreign.C.String
+import Foreign.C.Types
 import Foreign.Marshal.Alloc (mallocBytes, free)
-import GHC.IO (hGetBuf, hPutBuf)
+import System.IO (hGetBuf, hPutBuf)
 		   
 rawGetBytes :: Handle -> Int -> IO String
 rawGetBytes h n =

@@ -3,7 +3,7 @@ module Main where
 
 import Prelude hiding (head, div, span, map)
 import WASH.HTML.HTMLMonad
-import Random
+import System.Random
 import WASH.CGI.CGI
 
 main = 

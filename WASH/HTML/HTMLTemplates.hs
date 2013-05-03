@@ -5,8 +5,8 @@ import WASH.Utility.SHA1
 import WASH.Utility.JavaScript
 import qualified WASH.Utility.Base32 as Base32
 
-import Monad (unless)
-import List ((\\))
+import Control.Monad (unless)
+import Data.List ((\\))
 
 data ST s a =  ST { unST :: s -> (a, s) }
 instance Monad (ST s) where

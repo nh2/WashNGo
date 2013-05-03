@@ -13,9 +13,10 @@ module WASH.CGI.CGIGraphics
   ,Pixel, CGIImage, ActionFun) 
   where
 
-import Maybe
-import Monad
-import System
+import Control.Monad
+import Data.Maybe (fromMaybe, isJust)
+import System.IO
+import System.Process (system)
 
 import WASH.Utility.Hex
 import qualified WASH.CGI.RawCGIInternal as RawCGI

@@ -1,11 +1,15 @@
+{-# LANGUAGE PackageImports #-}
+
 module Main where
 
 -- ghc --make WASHMain -package text -o WASHMain
 
-import Directory
-import IO
-import List
-import System
+import Data.List (isSuffixOf)
+import Control.Exception
+import System.Directory
+import System.Environment
+import System.IO
+
 import WASHGenerator
 import WASHFlags
 

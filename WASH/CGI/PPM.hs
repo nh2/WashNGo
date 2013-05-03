@@ -1,7 +1,7 @@
 -- © 2001 Peter Thiemann
 module WASH.CGI.PPM where
 
-import Char
+import Data.Char
 
 data Pixmap =
      Pixmap	{ width :: Int

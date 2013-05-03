@@ -3,7 +3,7 @@
 
 module WASH.CGI.RawCGITypes where
 
-import IO
+import System.IO
 
 import WASH.CGI.CGITypes
 import WASH.CGI.HTTP

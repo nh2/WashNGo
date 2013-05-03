@@ -14,7 +14,7 @@ module WASH.HTML.HTMLBase
 -}
 where
 
-import Char
+import Data.Char
 
 data BT = STATIC | DYNAMIC | TOPLEVEL
 

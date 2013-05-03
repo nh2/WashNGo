@@ -1,8 +1,8 @@
 -- © 2003 Peter Thiemann
 module WASH.Utility.RFC2047 where
 -- decoding of header fields
-import Char
-import List
+import Data.Char
+import Data.List
 
 import qualified WASH.Utility.Base64 as Base64
 import qualified WASH.Utility.QuotedPrintable as QuotedPrintable

@@ -1,16 +1,15 @@
 module RepBase (module Item, module RepBase) where
 
 import Auxiliary
-import Char
-import Directory
-import List hiding (head)
-import Maybe
-import Random
+import Data.Char
+import System.Directory
+import Data.List hiding (head)
+import Data.Maybe
+import System.Random
 import Prelude hiding (head)
 import WASH.HTML.HTMLMonad
 import WASH.CGI.CGI
 import Item
-import System
 import WASH.Utility.Locking
 import WASH.Mail.Email
 

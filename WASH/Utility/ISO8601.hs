@@ -1,9 +1,9 @@
 -- © 2002 Peter Thiemann
 module WASH.Utility.ISO8601 where
 
-import Char
-import Monad
-import Time
+import Data.Char
+import Control.Monad
+import System.Time
 
 import System.IO.Unsafe
 

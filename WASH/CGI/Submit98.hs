@@ -21,7 +21,7 @@ import WASH.CGI.EventHandlers
 import qualified WASH.CGI.HTMLWrapper as H
 import WASH.CGI.InputHandle
 
-import Monad
+import Control.Monad
 
 instance HasValue InputField where
   value inf = valueInputField inf

@@ -3,7 +3,7 @@ module Main where
 
 import WASH.CGI.CGI hiding (head, div, span, map)
 import qualified WASH.CGI.CGI as CGI
-import Random
+import System.Random
 import qualified WASH.CGI.Persistent2 as P
 import qualified WASH.CGI.Cookie as C
 import WASH.CGI.Types -- for nhc98 

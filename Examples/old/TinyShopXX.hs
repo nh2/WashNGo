@@ -3,7 +3,7 @@ module Main where
 
 import WASH.CGI.CGIXX hiding (map, div, span, head)
 import DiskImages
-import Monad
+import Control.Monad
 
 helloCGI = 
   standardQuery "Welcome to TinyShop" $

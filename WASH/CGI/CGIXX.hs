@@ -1,4 +1,3 @@
-{-# OPTIONS -fglasgow-exts #-}
 -- © 2001, 2002 Peter Thiemann
 {-|
   One stop shop for the WASH\/CGI library. All high-level scripts should 

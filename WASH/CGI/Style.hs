@@ -2,7 +2,7 @@
 module WASH.CGI.Style (Style(..), using) where
 
 import WASH.HTML.HTMLMonad hiding (map, div, head, span)
-import List
+import Data.List
 
 infixl 5 :^:
 infix 9 :=:

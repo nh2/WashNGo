@@ -1,11 +1,10 @@
-{-# OPTIONS_GHC -fno-monomorphism-restriction #-}
+{-# LANGUAGE UndecidableInstances, NoMonomorphismRestriction #-}
 -- © 2001- 2005 Peter Thiemann
 -- |Definition of the monad underlying the CGI library.
 module WASH.CGI.CGIMonad
 where
 
-import Maybe
-
+import Data.Maybe (listToMaybe)
 import Control.Monad.Fix
 
 import WASH.CGI.CGITypes
@@ -59,6 +58,7 @@ fromCGIstate select =
   wrapCGI $ \cgistate ->
   return (select cgistate, cgistate)
 
+-- No clue what this type is, if we write it we can kill NoMonomorphismRestriction
 getCGIArgs = fromCGIstate args
 getUrl = fromCGIstate url
 getParm = fromCGIstate outparm

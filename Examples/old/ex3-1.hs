@@ -1,6 +1,6 @@
 module Main where
 
-import List
+import Data.List
 import WASH.CGI.CGI
 import WASH.CGI.CGITypes
 import Prelude hiding (div)

@@ -3,11 +3,11 @@
 -- i.e., there is a different cookie for each name and type.
 module WASH.CGI.Cookie (T, check, create, createExpiring, init, initExpiring, get, set, current, delete) where
 
-import Locale
-import Maybe
+import Data.Maybe (fromJust)
+import System.Locale
 import Prelude hiding (init)
-import Random
-import Time
+import System.Random
+import System.Time
 
 import WASH.CGI.BaseCombinators
 import WASH.CGI.CGIMonad

@@ -6,9 +6,9 @@
 module Main where
 
 import WASH.CGI.CGI hiding (map)
-import Random
-import List 
-import Char
+import System.Random
+import Data.List 
+import Data.Char
 
 main :: IO ()
 main = run mainCGI

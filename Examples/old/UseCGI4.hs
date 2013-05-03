@@ -1,7 +1,7 @@
 -- © 2001 Peter Thiemann
 module Main where
 
-import Maybe
+import Data.Maybe
 import Prelude hiding (head, div, map, span)
 import WASH.HTML.HTMLMonad
 import WASH.CGI.CGI

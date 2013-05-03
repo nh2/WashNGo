@@ -3,10 +3,10 @@ module WASH.Mail.MIME where
 -- RFC 2045
 -- RFC 2046
 
-import Char
-import IO
-import Monad
-import Random
+import Data.Char
+import System.IO hiding (CRLF)
+import Control.Monad
+import System.Random
 
 import qualified WASH.Utility.Base64 as Base64
 import qualified WASH.Mail.ContentDisposition as CD

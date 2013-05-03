@@ -3,10 +3,10 @@
 -- program. 
 module WASH.CGI.CGIOutput where
 
-import IO
-import Maybe
-import Monad
-import System
+import Control.Monad
+import Data.Maybe (fromJust)
+import System.Exit
+import System.IO
 
 import WASH.Utility.Auxiliary
 import WASH.Utility.BulkIO (rawHandleCopy)

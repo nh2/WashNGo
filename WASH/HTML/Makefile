@@ -87,7 +87,7 @@ install-files:
 ######################################################################
 # generic stuff
 
-HC_SPEC_FLAGS=	-package-name $(PACKAGE) # -fglasgow-exts		# -cpp -package posix -package data
+HC_SPEC_FLAGS=	-package-name $(PACKAGE) # -cpp -package posix -package data
 HCINCLUDES=	-i$(PATH_TO_UTILITY)
 HCLOADFLAGS=
 

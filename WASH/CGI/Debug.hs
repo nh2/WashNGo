@@ -1,10 +1,9 @@
 module WASH.CGI.Debug where
 
-import Directory
-import IO
-import Monad
-import System
-import Time
+import System.Directory
+import Control.Monad
+import System.IO
+import System.Time
 
 import System.IO.Unsafe
 

@@ -1,3 +1,4 @@
+{-# LANGUAGE ScopedTypeVariables #-}
 -- © 2001, 2002, 2003 Peter Thiemann
 {-|This is the preferred, type-indexed implementation of server-side state.
 
@@ -13,16 +14,16 @@ module WASH.CGI.Persistent2 (T, init, get, set, add, current) where
 
 import WASH.CGI.CGIConfig
 
-import System
 import Prelude hiding (init)
 import qualified Prelude (init)
-import List hiding (init)
-import qualified List (init)
-import Maybe
-import IO
-import Directory
-import Monad
-import Random
+import Data.List hiding (init)
+import qualified Data.List as List (init)
+import Data.Maybe (fromJust)
+import System.IO
+import System.Directory
+import Control.Monad
+import Control.Exception
+import System.Random
 
 import WASH.Utility.Auxiliary
 import WASH.CGI.CGI hiding (head, div, span, map)
@@ -95,7 +96,7 @@ init name val = do
 	pairs <- return $ read contents
 	return $ t name $ head $ pairs
      )
-     $ \ ioError ->
+     $ \ (ioError :: IOError) ->
      do trace ("P2.init: ioError caught")
 	nonce <- randomIO
 	let initialP = P nonce val

@@ -6,7 +6,7 @@ module Main where
 import WASH.CGI.CGI hiding (map)
 import qualified WASH.CGI.Transaction as T
 
-import Monad
+import Control.Monad
 
 type SeatCategory = Char
 seatCategories :: [SeatCategory]

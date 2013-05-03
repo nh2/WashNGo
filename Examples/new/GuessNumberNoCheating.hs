@@ -1,9 +1,9 @@
 -- © 2001-2005 Peter Thiemann
 module Main where
 
-import Random
-import Monad
-import List
+import System.Random
+import Control.Monad
+import Data.List
 
 import WASH.CGI.CGI
 import qualified WASH.CGI.Persistent2 as P

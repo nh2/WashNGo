@@ -2,7 +2,7 @@
 -- |Defines functions for shell quotation.
 module WASH.Utility.Shell where
 
-import Char
+import Data.Char
 
 -- |Shell meta characters are /! & ; \` \' \" | * ? ~ \< \> ^ ( ) [ ] true $ n r/
 metaCharacters :: String

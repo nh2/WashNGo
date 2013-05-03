@@ -1,7 +1,7 @@
 module WASHExpression where
 
-import List
-import Monad
+import Control.Monad
+import Data.List (isPrefixOf)
 
 import WASHFlags
 import qualified WASHUtil

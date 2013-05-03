@@ -34,7 +34,7 @@ import WASH.Dbconnect.Libpqfe
 import Foreign
 
 
-import IO
+import System.IO
 --import qualified Prelude as Pre(head, map, span, div)
 import Prelude hiding (fail)
 import qualified Control.Monad as C

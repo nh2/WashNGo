@@ -1,4 +1,4 @@
-{-# OPTIONS -fglasgow-exts #-}
+{-# LANGUAGE MultiParamTypeClasses, FlexibleInstances, TypeSynonymInstances #-}
 -- © 2001 Peter Thiemann
 module WASH.HTML.HTMLPrelude 
   (module WASH.HTML.HTMLPrelude,module WASH.HTML.HTMLTypedBase)

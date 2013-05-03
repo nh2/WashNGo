@@ -1,6 +1,6 @@
 import WASH.CGI.CGI
 
-import Monad
+import Control.Monad
 
 main = 
   run page1

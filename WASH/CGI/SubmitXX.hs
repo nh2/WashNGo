@@ -1,4 +1,4 @@
-{-# OPTIONS_GHC -fglasgow-exts -fallow-undecidable-instances #-}
+{-# LANGUAGE UndecidableInstances, MultiParamTypeClasses, FlexibleInstances, FunctionalDependencies #-}
 -- © 2002-2005 Peter Thiemann
 -- |Extended-Haskell version of the submission functions.
 module WASH.CGI.SubmitXX where
@@ -7,7 +7,7 @@ import WASH.CGI.CGIInternals
 import WASH.CGI.CGIMonad
 import WASH.CGI.EventHandlers
 
-import Monad
+import Control.Monad
 
 class StripHandle hx x | hx -> x where
   validate :: hx -> Either [ValidationError] x

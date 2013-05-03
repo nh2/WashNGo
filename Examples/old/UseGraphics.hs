@@ -1,7 +1,7 @@
 -- © 2001 Peter Thiemann
 module Main where
 
-import List
+import Data.List
 
 import WASH.CGI.CGI hiding (map, div, span, head)
 import WASH.CGI.CGIGraphics

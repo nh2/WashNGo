@@ -1,9 +1,9 @@
 -- © 2001, 2002 Peter Thiemann
 module Main where
 
-import Random
+import System.Random
 import Prelude hiding (head, span, map, div)
-import List hiding (head, span, map)
+import Data.List hiding (head, span, map)
 
 import WASH.HTML.HTMLMonad
 import WASH.CGI.CGI

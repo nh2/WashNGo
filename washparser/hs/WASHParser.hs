@@ -1,6 +1,7 @@
 module WASHParser ( xmlfile, washfile ) where {
 
-import Char ;
+import Data.Char;
+
 import Text.ParserCombinators.Parsec hiding (letter) ;
 import WASHData;
 import WASHUtil;
@@ -49,6 +50,7 @@ xmlfile = do {
 
 
 -- 2.2 / 2
+char' :: Parser Char;
 char' = (char '\t' <|> char '\n' <|> char '\r' <|> 
     satisfy (>= ' ')) <?> "character";
 

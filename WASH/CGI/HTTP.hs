@@ -1,6 +1,6 @@
 module WASH.CGI.HTTP where
 
-import Char
+import Data.Char
 
 data Method =
     OPTIONS

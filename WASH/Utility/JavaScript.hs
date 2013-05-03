@@ -1,7 +1,7 @@
 -- © 2003 Peter Thiemann
 module WASH.Utility.JavaScript where
 
-import Char
+import Data.Char
 
 import WASH.Utility.Hex
 

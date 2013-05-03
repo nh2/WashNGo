@@ -10,9 +10,9 @@ import WASH.CGI.HTMLWrapper
 import WASH.CGI.RawCGIInternal hiding (CGIEnv (..))
 import WASH.Utility.JavaScript
 
-import Char
-import List ((\\))
-import Maybe
+import Data.Char (isSpace)
+import Data.List ((\\))
+import Data.Maybe (isJust, fromMaybe)
 
 
 -- |abstract table (twodimensional)

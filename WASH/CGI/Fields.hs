@@ -1,8 +1,8 @@
 -- © 2002 Peter Thiemann
 module WASH.CGI.Fields where
 
-import Char
-import List
+import Data.Char
+import Data.List (isPrefixOf, isSuffixOf, tails)
 import WASH.Utility.ISO8601
 import WASH.Utility.SimpleParser as SimpleParser
 import WASH.CGI.CGITypes

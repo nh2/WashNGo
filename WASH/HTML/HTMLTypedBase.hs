@@ -1,10 +1,10 @@
-{-# OPTIONS -fglasgow-exts #-}
+{-# LANGUAGE MultiParamTypeClasses, FlexibleContexts #-}
 -- © 2001 Peter Thiemann
 module WASH.HTML.HTMLTypedBase
   (module WASH.HTML.HTMLBase, module WASH.HTML.HTMLTypedBase) 
   where
 
-import Char
+import Data.Char
 import WASH.HTML.HTMLBase
 
 -- typed layer

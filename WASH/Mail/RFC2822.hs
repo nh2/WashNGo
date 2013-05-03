@@ -1,6 +1,6 @@
 module WASH.Mail.RFC2822 where
 
-import Char
+import Data.Char
 -- 
 import Text.ParserCombinators.Parsec
 
@@ -15,7 +15,9 @@ fws =
      many1 ws1
 
 ws1 = oneOf " \t"
+lineChar :: Parser Char
 lineChar = noneOf "\n\r"
+headerNameChar :: Parser Char
 headerNameChar = noneOf "\n\r:"
 
 -- |parse contents of Date field according to RFC2822

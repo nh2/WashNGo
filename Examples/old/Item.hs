@@ -2,15 +2,15 @@ module Item where
 
 import Prelude hiding (head,map,span,div)
 import qualified Prelude (head,map,span,div)
-import Random
-import Directory
+import System.Random
+import System.Directory
 import WASH.CGI.CGI
 import WASH.HTML.HTMLMonad
-import List hiding (head)
-import Char
-import Maybe
+import Data.List hiding (head)
+import Data.Char
+import Data.Maybe
 import WASH.Utility.Locking
-import IO
+import System.IO
 import WASH.Utility.Auxiliary
 
 ----------------------------------------

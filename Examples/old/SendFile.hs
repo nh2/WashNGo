@@ -1,15 +1,14 @@
 -- © 2002 Peter Thiemann
 module Main where
 
-import Char
-import Directory
-import List hiding (head, span, map)
-import Maybe
-import Random
+import Data.Char
+import System.Directory
+import Data.List hiding (head, span, map)
+import Data.Maybe
+import System.Random
 import Prelude hiding (head, div, span, map)
 import WASH.HTML.HTMLMonad
 import WASH.CGI.CGI
-import System
 
 fileList = [("lp/part1.ps", "langproc")]
 storeDirectory = "/home/thiemann/public/"

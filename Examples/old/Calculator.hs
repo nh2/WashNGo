@@ -1,7 +1,7 @@
 -- © 2001-2005 Peter Thiemann
 module Main where
 
-import Char
+import Data.Char
 import Prelude hiding (head, span, map)
 import WASH.CGI.CGI hiding (div)
 

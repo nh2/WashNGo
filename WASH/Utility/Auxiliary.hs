@@ -1,14 +1,19 @@
+{-# LANGUAGE ScopedTypeVariables #-}
+
 module WASH.Utility.Auxiliary where
 
-import IO
-import System
-import Directory
+import Control.Exception
+import System.Directory
+import System.Environment
+import System.IO
+import System.IO.Error
+import System.Process (system)
 import WASH.Utility.FileNames
 import qualified WASH.Utility.Shell as Shell
 
 protectedGetEnv :: String -> String -> IO String
 protectedGetEnv var deflt =
-  catch (getEnv var) (const $ return deflt)
+  catch (getEnv var) (\ (e :: SomeException) -> return deflt)
 
 readFileNonExistent :: FilePath -> String -> IO String
 readFileNonExistent fileName def =
@@ -28,7 +33,7 @@ readFileStrictly filePath =
 assertDirectoryExists :: FilePath -> IO () -> IO ()
 assertDirectoryExists dirname existsAction =
   catch (createDirectory dirname)
-        (\ ioe -> 
+        (\ (ioe :: IOException) -> 
 	   if isAlreadyExistsError ioe then existsAction
 	   else if isDoesNotExistError ioe then
 	     do assertDirectoryExists (dropLastComponent dirname) (return ())

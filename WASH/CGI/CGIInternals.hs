@@ -12,11 +12,10 @@ where
 
 import Prelude hiding (head,div,span)
 import qualified Prelude
-import qualified List
-import Maybe
-import Monad
-import System
-import IO
+import Control.Monad
+import Data.List as List
+import Data.Maybe
+import System.IO
 
 import WASH.Utility.Auxiliary
 import qualified WASH.Utility.Base64 as Base64

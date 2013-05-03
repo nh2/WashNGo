@@ -21,7 +21,7 @@ goals.
 -}
 module WASH.CGI.Types where
 
-import Maybe
+import Data.Maybe (fromJust)
 
 -- | A type specification consists of a type representation 'TyRep' and a list of
 -- type declarations.

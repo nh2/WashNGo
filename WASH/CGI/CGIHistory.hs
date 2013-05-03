@@ -2,9 +2,9 @@ module WASH.CGI.CGIHistory where
 
 import System.IO.Unsafe (unsafePerformIO)
 
-import IO
-import Maybe
-import Monad
+import Data.Maybe (fromMaybe)
+import System.IO
+import Control.Monad
 import Control.Concurrent
 import Control.Concurrent.MVar
 import qualified Data.Map as Map

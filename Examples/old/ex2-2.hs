@@ -7,9 +7,9 @@ module Main where
 
 import WASH.CGI.CGI hiding (div)
 import WASH.CGI.Fields
-import Time
-import Char
-import Ix
+import System.Time
+import Data.Char
+import Data.Ix
 
 main =
   run $ standardQuery "Days of Life!" $

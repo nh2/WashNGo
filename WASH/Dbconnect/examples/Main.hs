@@ -13,14 +13,14 @@ where
 
 import HTMLMonad
 import CGI
-import IO
+import System.IO
 import qualified Control.Exception as CE
 
 import CGITypes
 import AbstractSelector
 import Prelude hiding (head, map, span, div, init, fail)
 import qualified Prelude as Pre(head, map, span, div)
-import Monad
+import Control.Monad
 import AbstractSelector
 
 import CGIOutput(itell)

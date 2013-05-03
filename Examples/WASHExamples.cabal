@@ -1,5 +1,5 @@
 Name: WashNGoExamples
-Version: 2.10
+Version: 2.11
 License: BSD3
 License-File: LICENSE
 Author: Peter Thiemann
@@ -8,17 +8,17 @@ Homepage: http://www.informatik.uni-freiburg.de/~thiemann/haskell/WASH/
 Category: Web
 Stability: Beta
 Synopsis: Example package for WASH
-Build-Depends: base, haskell98, parsec, WashNGo>=2.10
+Build-Depends: base, parsec, random, old-time, directory, WashNGo>=2.13
 
 Executable: Date
 Main-Is: Date.hs
 Hs-Source-Dirs: new
-Ghc-Options: -pgmF wash2hs -F -fglasgow-exts
+Ghc-Options: -pgmF wash2hs -F
 
 Executable: Date2
 Main-Is: Date2.hs
 Hs-Source-Dirs: new
-Ghc-Options: -pgmF wash2hs -F -fglasgow-exts
+Ghc-Options: -pgmF wash2hs -F
 
 -- Executable: Reservation
 -- Main-Is: Reservation.hs

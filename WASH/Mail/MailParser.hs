@@ -2,9 +2,9 @@ module WASH.Mail.MailParser where
 
 -- see RFC 2822
 -- TODO: check against their definition of token
-import Char
-import List
-import Maybe
+import Data.Char
+import Data.List
+import Data.Maybe
 -- 
 import Text.ParserCombinators.Parsec
 -- 
@@ -38,6 +38,7 @@ literalString = do char '\"'
 		   return str
 
 no_ws_ctl_chars = map chr ([1..8] ++ [11,12] ++ [14..31] ++ [127])
+no_ws_ctl :: Parser Char
 no_ws_ctl = oneOf no_ws_ctl_chars
 
 text_chars = map chr ([1..9] ++ [11,12] ++ [14..127])

@@ -1,7 +1,7 @@
 -- © 2002 Peter Thiemann
 module WASH.Utility.IntToString where
 
-import Char
+import Data.Char
 
 intToString ndigits i =
   let g x = h $ divMod x 10

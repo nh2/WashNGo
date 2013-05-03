@@ -1,15 +1,18 @@
+{-# LANGUAGE ScopedTypeVariables #-}
 -- © 2002 Peter Thiemann
 module WASH.CGI.CGIConfig where
 
+import Control.Exception
+import System.Environment
+import System.IO
 import System.IO.Unsafe
-import System
 
 tmpDir, varDir, imageDir, emailTmpDir, frameDir, persistentDir, persistent2Dir, registryDir, keyFile, pbmPath, catProgram, sendmailProgram :: String
 
 -- |global root for WASH data
 globalRoot :: String
 globalRoot =
-  unsafePerformIO (catch (getEnv "HOME") (\ ioe -> return ""))
+  unsafePerformIO (catch (getEnv "HOME") (\ (ioe :: SomeException) -> return ""))
 
 -- temporary storage
 tmpDir = globalRoot ++ "/tmp/"

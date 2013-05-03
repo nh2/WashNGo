@@ -1,7 +1,8 @@
 module WASHGenerator (preprocess, preprocessPIPE) where {
 
-import List;
-import IO;
+import Control.Exception;
+import Data.List (isPrefixOf);
+import System.IO;
 
 import WASHData ;
 import Text.ParserCombinators.Parsec hiding (try) ;

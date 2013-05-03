@@ -1,6 +1,6 @@
 module WASH.CGI.CookieIO (decodeCookie, encodeCookie, putCookies) where
 
-import IO
+import System.IO
 
 import WASH.CGI.CGIMonad
 import qualified WASH.CGI.Debug as Debug

@@ -1,8 +1,8 @@
 -- © 2001, 2002 Peter Thiemann
 module WASH.CGI.ContentType where
 
-import Char
-import List
+import Data.Char
+import Data.List (isSuffixOf)
 
 -- |tries to derive a MIME content type from a file name
 guessContentType :: String -> String
