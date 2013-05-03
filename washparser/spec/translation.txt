@@ -1,0 +1,77 @@
+Translation from WASH surface syntax to Haskell
+===============================================
+
+[e[ <WASH:submit WASH:parms="p1 p2 p3" WASH:callback="callme" furtherattrs /> ]]
+        = [e[ <% submit (F3 p1 p2 p3) (callme) <[ furtherattrs ]> %> ]]
+
+[e[ <WASH:submit WASH:callback="callme" furtherattrs /> ]]
+        = [e[ <% submit0 (callme) <[ furtherattrs ]> %> ]]
+
+[e[ '<'tag attrs'>' contents '</'tag'>' ]]
+	= tag '(do{' [a[attrs]] [c[contents]] '})' ';'
+[e[ cdata ]]
+	= 'rawtext' '"' cdata '"' ';'
+[e[ '<%' statement::WithHTML '%>' ]]
+        = statement::WithHTML ';'
+[e[ '<%=' expression::String '%>' ]]
+	 'text' '(' expression::String ')' ';'
+
+[a[ ]]
+	= 'empty' ';'
+[a[ name '=' value attrs ]]
+	= 'attr' '"'name'"' [v[value]] ';' [a[ attrs ]]
+
+[v[ '<%' expression::String '%>' ]] 
+        = expression::String
+[v[ '"' string '"' ]]
+	= '"' string '"'
+
+[c[ ]]
+	= 'empty' ';'
+[c[ elem rest ]]
+	= [e[ elem ]] [c[ rest ]]
+
+
+======================================================================
+(using the output monad to generate the translated source)
+
+[e[ '<'tag attrs'>' contents '</'tag'>' ]]
+	= do out '('
+             out tag
+             out '$do{'
+             [a[attrs]]
+             rvs <- [c[contents]]
+             out '})'
+             return rvs
+[e[ cdata ]]
+	= do out 'rawtext' '"' cdata '"' ';'
+             return []
+[e[ '<%' var '<-' expression::WithHTML '%>' ]]
+        = do out expression::WithHTML ';'
+	     return [var]
+[e[ '<%' statement::WithHTML '%>' ]]
+        = do out statement::WithHTML ';'
+	     return []
+[e[ '<%=' expression::String '%>' ]]
+	 = do out 'text' '(' expression::String ')' ';'
+              return []
+
+[a[ ]]
+	= out 'empty' ';'
+[a[ name '=' value attrs ]]
+	= out 'attr' '"'name'"' [v[value]] ';' [a[ attrs ]]
+
+[v[ '<%' expression::String '%>' ]] 
+        = expression::String
+[v[ '"' string '"' ]]
+	= '"' string '"'
+
+[c[ ]] (rvs)
+	= do out 'return' rvs
+	     return rvs
+[c[ elem rest ]] (rvs)
+	= do rvse <- [e[ elem ]]
+	     out '>>=' '\' rvse '->'
+             [c[ rest ]] (rvs ++ rvse)
+
+

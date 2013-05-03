@@ -1,0 +1,7 @@
+-- this is only to test the parser
+
+x = <[anAttr="avalue"]>
+y = <[ twoAttrs="m"   moreAttrs="n"
+     ]>
+z = <myElement x="0" <% ya ya ya %> y="1" z="2" <% yummy %>/>
+

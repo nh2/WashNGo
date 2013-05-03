@@ -1,0 +1,75 @@
+Installation of WashNGo
+
+> ./configure
+> make all
+> su
+# make install
+# exit
+
+and you are done!
+
+To compile the example code use
+
+> make examples
+
+To install the examples, move the executables to your web server's CGI
+directory. There are some suitable targets in Examples/Makefile, but
+they need to be customized to your setup.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+This procedure installs the following executables:
+* wash2hs, the WASH preprocessor
+* washc, the WASH compiler (a shell script which calls GHC with the correct options)
+
+and the Haskell package WashNGo which provides hierarchical modules at
+the following locations:
+* WASH.Utility		various stuff
+* WASH.HTML		XHTML generation
+* WASH.Mail		interfaces for sending and parsing mail
+* WASH.CGI		the scripting library
+* WASH.Dbconnect	simple database connection library (if configured)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Alternatively, you may interact directly with Cabal to build and
+install the system (except the washc script). 
+
+> ./Setup.lhs configure
+> ./Setup.lhs build
+> su
+# ./Setup.lhs install
+# exit
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+A draft user manual is available from the WASH web site
+http://www.informatik.uni-freiburg.de/~thiemann/haskell/WASH
+
+To create the haddock documentation use
+
+> make haddock
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+NOTE
+
+In some setting, it will be complicated to get everything to work with
+the database connection. The reason is that some versions of c2hs
+(0.13.6 in particular) do not install properly as a package: the
+hs-libraries component of the package description is missing with the
+consequence that programs do not link properly. If you can fix they
+you fly.
+
+Installing newer versions (0.14.2 or 0.14.3) is not possible out of
+the box because they require cabal with version >= 1.0.1. Alas, GHC
+6.4.1 ships with 1.0. Installing cabal-1.1.4 does not help either
+because... 
+
+.../c2hs-0.14.3 > ./Setup.hs build
+Preprocessing executables for c2hs-0.14.3...
+Building c2hs-0.14.3...
+Chasing modules from: c2hs/toplevel/Main.hs
+Could not find module `CForeign':
+
+Oh well.

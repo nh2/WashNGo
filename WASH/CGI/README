@@ -1,0 +1,21 @@
+			       WASH/CGI
+		   Web Authoring System for Haskell
+
+WASH/CGI is an embedded DSL for server-side Web scripting based on the
+purely functional programming language Haskell. Its implementation is based 
+on the portable common gateway interface (CGI) supported by virtually all
+Web servers. WASH/CGI offers a unique and fully-typed approach to Web
+scripting. It offers the following features
+* a monadic interface to generating HTML output
+* type-safe compositional approach to specifying form elements
+* callback-style programming interface for forms
+* automatic error detection
+* complete interactive script in one program
+* type-safe interfaces to state with different scopes: interaction,
+  persistent client-side (cookie-style), persistent server-side
+* integration with CSS yields compositional style descriptions
+* on-the-fly generated graphics
+* high-level interface to email generation
+
+Download WASH-CGI-1.0 from
+http://www.informatik.uni-freiburg.de/~thiemann/WASH/

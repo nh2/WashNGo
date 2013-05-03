@@ -1,0 +1,155 @@
+Name: WashNGoExamples
+Version: 2.10
+License: BSD3
+License-File: LICENSE
+Author: Peter Thiemann
+Copyright: Copyright 2001-2006, Peter Thiemann
+Homepage: http://www.informatik.uni-freiburg.de/~thiemann/haskell/WASH/
+Category: Web
+Stability: Beta
+Synopsis: Example package for WASH
+Build-Depends: base, haskell98, parsec, WashNGo>=2.10
+
+Executable: Date
+Main-Is: Date.hs
+Hs-Source-Dirs: new
+Ghc-Options: -pgmF wash2hs -F -fglasgow-exts
+
+Executable: Date2
+Main-Is: Date2.hs
+Hs-Source-Dirs: new
+Ghc-Options: -pgmF wash2hs -F -fglasgow-exts
+
+-- Executable: Reservation
+-- Main-Is: Reservation.hs
+-- Hs-Source-Dirs: new
+-- Ghc-Options: -pgmF wash2hs -F
+
+Executable: CalcHistory
+Main-Is: CalcHistory.hs
+Hs-Source-Dirs: old
+
+Executable: CalcFix
+Main-Is: CalcFix.hs
+Hs-Source-Dirs: old
+
+Executable: Calculator
+Main-Is: Calculator.hs
+Hs-Source-Dirs: old
+
+Executable: Counter
+Main-Is: Counter.hs
+Hs-Source-Dirs: old
+
+Executable: HelloWorld
+Main-Is: HelloWorld.hs
+Hs-Source-Dirs: old
+
+Executable: Multiplication
+Main-Is: Multiplication.hs
+Hs-Source-Dirs: old
+
+Executable: UpDownCounter
+Main-Is: UpDownCounter.hs
+Hs-Source-Dirs: old
+
+Executable: UseAT
+Main-Is: UseAT.hs
+Hs-Source-Dirs: old
+
+Executable: UseCGI4
+Main-Is: UseCGI4.hs
+Hs-Source-Dirs: old
+
+Executable: UseGraphics
+Main-Is: UseGraphics.hs
+Hs-Source-Dirs: old
+
+Executable: GuessNumberCookie
+Main-Is: GuessNumberCookie.hs
+Hs-Source-Dirs: old
+
+Executable: GuessNumber
+Main-Is: GuessNumber.hs
+Hs-Source-Dirs: old
+
+Executable: GuessNumberNoCheating
+Main-Is: GuessNumberNoCheating.hs
+Hs-Source-Dirs: old
+
+Executable: TimeTable
+Main-Is: TimeTable.hs
+Hs-Source-Dirs: old
+
+Executable: SendFile
+Main-Is: SendFile.hs
+Hs-Source-Dirs: old
+
+Executable: Tutorial
+Main-Is: Tutorial.hs
+Hs-Source-Dirs: old
+
+Executable: Upload
+Main-Is: Upload.hs
+Hs-Source-Dirs: old
+
+Executable: Vote
+Main-Is: Vote.hs
+Hs-Source-Dirs: old
+
+Executable: TinyShop
+Main-Is: TinyShop.hs
+Hs-Source-Dirs: old
+
+Executable: TinyShopXX
+Main-Is: TinyShopXX.hs
+Hs-Source-Dirs: old
+
+Executable: ex1
+Main-Is: ex1.hs
+Hs-Source-Dirs: old
+
+Executable: ex2-2
+Main-Is: ex2-2.hs
+Hs-Source-Dirs: old
+
+Executable: ex2-3
+Main-Is: ex2-3.hs
+Hs-Source-Dirs: old
+
+Executable: ex3-1
+Main-Is: ex3-1.hs
+Hs-Source-Dirs: old
+
+Executable: ex3-2-a
+Main-Is: ex3-2-a.hs
+Hs-Source-Dirs: old
+
+Executable: ex3-2-b
+Main-Is: ex3-2-b.hs
+Hs-Source-Dirs: old
+
+Executable: NewCounter
+Main-Is: Counter.hs
+Hs-Source-Dirs: new
+Ghc-Options: -pgmF wash2hs -F
+
+Executable: NewHelloWorld
+Main-Is: HelloWorld.hs
+Hs-Source-Dirs: new
+Ghc-Options: -pgmF wash2hs -F
+
+Executable: NewMultiplication
+Main-Is: Multiplication.hs
+Hs-Source-Dirs: new
+Ghc-Options: -pgmF wash2hs -F
+
+Executable: NewGuessNumberNoCheating
+Main-Is: GuessNumberNoCheating.hs
+Hs-Source-Dirs: new
+Ghc-Options: -pgmF wash2hs -F
+
+Executable: NewTutorial
+Main-Is: Tutorial.hs
+Hs-Source-Dirs: new
+Ghc-Options: -pgmF wash2hs -F

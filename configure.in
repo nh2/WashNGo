@@ -1,0 +1,177 @@
+dnl ***********
+dnl Initialise.
+dnl ***********
+
+dnl Process this file with autoconf to produce a configure script.
+AC_INIT(WASHNGO,2.6,thiemann@informatik.uni-freiburg.de,WASHNGO-2.6.tar)
+AC_PREREQ(2.57)
+
+dnl *****************************************
+dnl Additional configure command line options
+dnl *****************************************
+
+dnl Select a specific Haskell compiler and/or flags.
+AC_ARG_WITH(hc, 
+            AC_HELP_STRING([--with-hc=HC],[use Haskell compiler HC]),
+	    [GHC=$withval])
+
+AC_ARG_WITH(hcflags, 
+            AC_HELP_STRING([--with-hcflags=HCFLAGS],
+			   [specify extra flags for the Haskell compiler]),
+	    [HCEXTRAFLAGS=$withval])
+
+dnl 
+AC_ARG_ENABLE(package_conf,
+	AC_HELP_STRING([--enable-package-conf=PKG-CONF-FILE],
+                       [select alternative package configuration file while compiling (default NO)]),
+	[ENABLE_PACKAGE_CONF=$enableval],
+	[ENABLE_PACKAGE_CONF="no"])
+
+dnl Select whether to use --add-package-conf during installation.
+AC_ARG_ENABLE(register_package,
+	    AC_HELP_STRING([--enable-register-package@<:@=PKG-CONF-FILE@:>@],
+                           [register package when installing
+                            (default YES, use selected configuration file unless specified)]),
+	    [ENABLE_REG_PACKAGE=$enableval],
+            [ENABLE_REG_PACKAGE="yes"]
+)
+
+dnl Select whether to build docs
+AC_ARG_ENABLE(add_docs,
+	    AC_HELP_STRING([--enable-build-docs],
+ 			   [build haddock docs (default is YES)]),
+	    [ENABLE_BUILD_DOCS=$enableval],
+            [ENABLE_BUILD_DOCS="yes"])
+
+dnl Want to use the PostgreSQL DB interface?
+AC_ARG_ENABLE(dbconnect,
+	    AC_HELP_STRING([--enable-dbconnect],[include dbconnect (default is NO), set PG_BINDIR to psql's bin directory unless it is in your default path]),
+   	    [ENABLE_DBCONNECT=$enableval],
+            [ENABLE_DBCONNECT="no"])
+
+dnl ********************
+dnl Checks for programs.
+dnl ********************
+
+AC_PROG_CC
+AC_PROG_INSTALL
+AC_PROG_RANLIB
+
+AC_PATH_PROG(CP,cp)
+AC_PATH_PROG(DATE,date)
+AC_PATH_PROG(LD,ld)
+AC_PATH_PROG(MKDIR,mkdir)
+AC_PATH_PROG(RM,rm)
+AC_PATH_PROG(TAR,tar)
+
+AC_PATH_PROG(SSH,ssh)
+AC_PATH_PROG(SCP,scp)
+
+AC_PATH_PROG(HC,${GHC:=ghc})
+
+dnl Check ghc's version
+
+WASH_GHC_VERSION(hc_vers,hc_maj_vers,hc_min_vers,hc_pl)
+WASH_PROG_CHECK_VERSION($hc_vers, -lt, 6.01, [
+  AC_MSG_ERROR([We need to have version 6.01 upwards of ghc!
+** Check \"http://haskell.org\". **])])
+
+HC_VERSION=$hc_vers
+[SYS=`echo $GHC | sed 's/-[0-9.]*$//'`-$hc_vers]
+
+dnl Checks for package management
+
+if test ! "$HC_VERSION" '<' "6.4"; then
+  GHCPKG_OPT__CONFIG_FILE="-f"
+  GHCPKG_OPT__UPDATE="update -"
+dnl  HCEXTRAFLAGS="-package lang"
+else
+  GHCPKG_OPT__CONFIG_FILE="-f"
+  GHCPKG_OPT__UPDATE="--update-package"
+fi
+
+if test ! "$ENABLE_PACKAGE_CONF" = "no"; then
+  HCEXTRAFLAGS="-package-conf $ENABLE_PACKAGE_CONF $HCEXTRAFLAGS"
+  GHCPKGFLAGS="$GHCPKG_OPT__CONFIG_FILE $ENABLE_PACKAGE_CONF"
+else
+  GHCPKGFLAGS=""
+fi
+
+if test ! "$ENABLE_REG_PACKAGE" = "no"; then
+  AC_PATH_PROG(GHCPKG,$(basename $HC | sed s/ghc/ghc-pkg/))
+
+  if ! test "$ENABLE_REG_PACKAGE" = "yes"; then
+    GHCPKGFLAGS="$GHCPKG_OPT__CONFIG_FILE $ENABLE_REG_PACKAGE";
+    ENABLE_REG_PACKAGE="yes";
+  fi;
+fi
+
+GHCPKG_UPDATE="$GHCPKG $GHCPKG_OPT__UPDATE" 
+
+if test "$ENABLE_DBCONNECT" = "yes"; then
+  AC_PATH_PROG(C2HS,c2hs,[no])
+  AC_PATH_PROG(PG_CONFIG,pg_config,[no],[$PATH:$PG_BINDIR])
+  if test "$C2HS" = "no" ; then
+    ENABLE_DBCONNECT="no"
+    C2HS=""
+    AC_MSG_WARN([--enable-dbconnect turned off because program c2hs was not found])
+  fi
+  if test "$PG_CONFIG" = "no" ; then
+    ENABLE_DBCONNECT="no"
+    PG_CONFIG=""
+    AC_MSG_WARN([--enable-dbconnect turned off because program pg_config was not found])
+  fi
+else
+  C2HS=""
+  PG_CONFIG=""
+fi
+
+
+dnl Checks for haddock
+
+if test "$ENABLE_BUILD_DOCS" = "yes"; then
+  AC_PATH_PROG(HADDOCK,haddock,[no])
+  if test "$HADDOCK" = "no" ; then
+    ENABLE_BUILD_DOCS="no"
+    HADDOCK=""
+    AC_MSG_WARN([--enable-build-docs turned off because program haddock was not found])
+  fi
+else
+  HADDOCK=""
+fi
+
+dnl *********************
+dnl Checks for libraries.
+dnl *********************
+
+dnl AC_CHECK_LIB(Utility, main)
+
+dnl Checks for header files.
+AC_HEADER_STDC
+
+dnl Checks for typedefs, structures, and compiler characteristics.
+
+dnl Checks for library functions.
+
+dnl *********************
+dnl Needed substitutions.
+dnl *********************
+
+AC_SUBST(SSH)
+AC_SUBST(SCP)
+AC_SUBST(C2HS)
+AC_SUBST(HC_VERSION)
+AC_SUBST(SYS)
+AC_SUBST(HADDOCK)
+AC_SUBST(HCEXTRAFLAGS)
+AC_SUBST(GHCPKGFLAGS)
+AC_SUBST(ENABLE_REG_PACKAGE)
+AC_SUBST(ENABLE_BUILD_DOCS)
+AC_SUBST(ENABLE_DBCONNECT)
+AC_SUBST(GHCPKG_UPDATE)
+
+dnl ********************
+dnl Write the results...
+dnl ********************
+AC_CONFIG_FILES(mk/config.mk)
+AC_OUTPUT
