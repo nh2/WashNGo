@@ -4,10 +4,10 @@ arch-tag: Main setup script
 > import Distribution.Simple
 > import Distribution.Simple.Configure
 > import Distribution.Simple.LocalBuildInfo
-> import Distribution.Setup
+> import Distribution.Simple.Setup
 > import Distribution.PackageDescription
-> import IO
-> import System
+> import Distribution.Text (display)
+> import System.IO
 > import System.Posix.Files
 
 > main = defaultMainWithHooks myUserHooks
@@ -17,9 +17,9 @@ arch-tag: Main setup script
 >     { instHook = myInstaller
 >     }
 > 
-> myInstaller :: PackageDescription -> LocalBuildInfo -> Maybe UserHooks -> InstallFlags -> IO ()
-> myInstaller pdesc lbi mhook userFlags =
->   do instHook defaultUserHooks pdesc lbi mhook userFlags
+> myInstaller :: PackageDescription -> LocalBuildInfo -> UserHooks -> InstallFlags -> IO ()
+> myInstaller pdesc lbi hook userFlags =
+>   do instHook defaultUserHooks pdesc lbi hook userFlags
 >      myPostInstaller pdesc userFlags lbi
 > 
 > -- | Build and install the shell script to invoke the Haskell compiler with 
@@ -27,13 +27,13 @@ arch-tag: Main setup script
 > myPostInstaller :: PackageDescription -> InstallFlags -> LocalBuildInfo -> IO ()
 > myPostInstaller pdesc instFlags localBuildInfo =
 >   let hc = compiler localBuildInfo
->	bindir = prefix localBuildInfo ++ "/bin"
+>	bindir = prefix (absoluteInstallDirs pdesc localBuildInfo NoCopyDest) ++ "/bin" -- TODO check if NoCopyDest is correct
 >	generated = bindir ++ "/washc"
->	pid = showPackageId (package pdesc)
+>	pid = display (package pdesc)
 >   in
 >   do h <- openFile generated WriteMode
 >      hPutStrLn h "#!/bin/sh"
->      hPutStr h (compilerPath hc)
+>      hPutStr h "ghc"
 >      hPutStr h " -pgmF "
 >      hPutStr h bindir
 >      hPutStr h "/wash2hs"

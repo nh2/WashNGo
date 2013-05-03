@@ -8,7 +8,7 @@ Homepage: http://www.informatik.uni-freiburg.de/~thiemann/haskell/WASH/
 Category: Web
 Stability: Beta
 Synopsis: WASH is a family of embedded domain specific languages (EDSL) for programming Web applications in Haskell.
-Build-Depends: base, regex-compat, haskell98, parsec
+Build-Depends: base, regex-compat, haskell98, parsec, Cabal
 Extensions: ForeignFunctionInterface
 Exposed-Modules:
         WASH.CGI.AbstractSelector
